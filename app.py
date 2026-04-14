@@ -6,7 +6,7 @@ qe = QuestionEngine("questions.json")
 cm = CareerModel()
 cm.train("train.csv")
 
-# Session state
+
 if "qid" not in st.session_state:
     st.session_state.qid = 1
     st.session_state.answers = []
@@ -15,7 +15,7 @@ q = qe.get_question_by_id(st.session_state.qid)
 
 st.title("AI Career Guidance")
 
-# Show question
+
 if q and len(st.session_state.answers) < 100:
 
     st.write(q["question"])
@@ -36,7 +36,7 @@ if q and len(st.session_state.answers) < 100:
         st.session_state.answers.append(q["weights"]["D"])
         st.session_state.qid = q["next_question_map"]["D"]
 
-# Final result
+
 else:
     while len(st.session_state.answers) < 100:
         st.session_state.answers.append(2)
